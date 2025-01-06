@@ -88,5 +88,3 @@ Feel free to submit issues or pull requests to improve this tool. For major chan
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ---
-
-Let me know if you need help tailoring this further! 🚀
