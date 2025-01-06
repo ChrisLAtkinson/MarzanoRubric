@@ -23,6 +23,33 @@ rubric_data = {
         "Data analysis for school achievement",
         "Data analysis for individual student achievement",
         "Programs and practices for intervention"
+    ],
+    "Criteria": [
+        """
+        - Written goals are established as a percentage of students who will score at a proficient or higher level on state assessments.
+        - School-wide achievement goals are posted and discussed regularly.
+        - Faculty and staff can describe the school-wide achievement goals.
+        """,
+        """
+        - Each student has written achievement goals.
+        - Students keep data notebooks regarding their individual goals.
+        - Parent-teacher conferences focus on individual student goals.
+        """,
+        """
+        - Reports, graphs, and charts are available for overall student achievement.
+        - School leadership teams regularly analyze school growth data.
+        - Data briefings are conducted at faculty meetings.
+        """,
+        """
+        - Individual student achievement is tracked through charts and graphs.
+        - Teachers regularly analyze growth data for individual students.
+        - Individual student reports are regularly updated.
+        """,
+        """
+        - Extended school day and week programs are in place.
+        - Tutorial programs are available.
+        - Academic help is available during school hours.
+        """
     ]
 }
 
@@ -38,7 +65,10 @@ if 'evidence' not in st.session_state:
 # User input for each domain
 st.write("### Evaluation Criteria")
 for i, row in df.iterrows():
-    st.write(f"**{row['Domain']} - {row['Elements']}**")
+    st.write(f"## {row['Domain']}")
+    st.write(f"**Element:** {row['Elements']}")
+    st.write(f"**Criteria:** {row['Criteria']}")
+    
     st.session_state['scores'][i] = st.slider(
         "Score (0-4)", 0, 4, st.session_state['scores'][i], key=f"score_{i}"
     )
@@ -66,6 +96,7 @@ if st.button("Save Results"):
     results_df = pd.DataFrame({
         "Domain": df['Domain'],
         "Element": df['Elements'],
+        "Criteria": df['Criteria'],
         "Score": st.session_state['scores'],
         "Evidence": st.session_state['evidence']
     })
@@ -81,4 +112,3 @@ if st.button("Download Results"):
     )
 
 st.write("You can also press `Ctrl+P` or `Cmd+P` to print this page.")
-
