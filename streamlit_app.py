@@ -79,10 +79,10 @@ for i, item in enumerate(rubric_data):
     st.write(f"## {item['Domain']}")
     st.write(f"**Element:** {item['Element']}")
     
-    # Display Rubric as Clean Table
+    # Display Rubric as Clean Table without Index
     st.write("**Scoring Rubric:**")
     rubric_df = pd.DataFrame(item['Rubric'], columns=["Score", "Criteria"])
-    st.table(rubric_df)  # Clean display without index
+    st.table(rubric_df.set_index("Score"))  # Remove the default index, use "Score" as index
     
     # Scoring Slider
     st.session_state['scores'][i] = st.slider(
